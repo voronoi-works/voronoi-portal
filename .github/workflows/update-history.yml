@@ -1,0 +1,96 @@
+name: Update activity history and publish
+
+on:
+  schedule:
+    # Every morning at 08:23 JST (scheduled starts may be delayed by GitHub).
+    - cron: '23 23 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'site/**'
+      - '.github/workflows/update-history.yml'
+
+concurrency:
+  group: portal-publication
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    defaults:
+      run:
+        working-directory: site
+    env:
+      ASTRO_TELEMETRY_DISABLED: '1'
+      VORONOI_PUBLIC: '1'
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: pnpm
+          cache-dependency-path: site/pnpm-lock.yaml
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Test archive preservation and source handling
+        run: python -m unittest discover -s tests -p 'test_*.py' -v
+      - name: Fetch public publications and append new entries
+        run: python scripts/sync-history.py --report ../history-sync-report.json
+      - name: Test timeline
+        run: pnpm test
+      - name: Check types
+        run: pnpm typecheck
+      - name: Build the public site
+        run: pnpm build
+      - name: Verify generated publication
+        run: pnpm verify:build
+      - name: Save appended history only after successful validation
+        run: |
+          if ! git diff --quiet -- data/activities.json; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add data/activities.json
+            git commit -m 'Append newly published activities [skip ci]'
+            git push origin HEAD:main
+          fi
+      - name: Record synchronization result
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          report = json.loads(Path('../history-sync-report.json').read_text())
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as output:
+              output.write(f"Activities: {report['previousCount']} → {report['totalCount']}\n\n")
+              output.write(f"New entries: {report['addedCount']}; latest date: {report['latestDate']}\n\n")
+              output.write('All sources fetched, history preserved, tests and publication checks passed.\n')
+          PY
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: site/dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy verified site
+        id: deployment
+        uses: actions/deploy-pages@v4

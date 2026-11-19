@@ -1,0 +1,8 @@
+/site/node_modules/
+/site/.astro/
+/site/dist/
+/history-sync-report.json
+/history-sync-console.txt
+__pycache__/
+*.pyc
+*.tmp
