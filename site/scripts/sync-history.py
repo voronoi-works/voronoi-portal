@@ -186,7 +186,7 @@ def validate_archive(archive):
         ids.add(row['id'])
         if date.fromisoformat(row['date']).isoformat() != row['date']:
             raise ValueError('Invalid activity date')
-        if row['channel'] not in ('blog', 'note', 'make', 'youtube', 'sns', 'instagram') or row['kind'] != 'published':
+        if row['channel'] not in ('blog', 'note', 'make', 'youtube') or row['kind'] != 'published':
             raise ValueError('Invalid activity kind or channel')
         clean_title(row['title'])
         if row['url'] is not None:

@@ -21,22 +21,22 @@ test('history excludes future posts without inventing opening dates', () => {
   assert.equal(youtube.posts.length, 0);
 });
 test('selected real records are counted, not fictional opening events or reservations', () => {
-  const beforeSync = activities.slice(0, 328);
+  const beforeSync = activities.slice(0, 154);
   const latest = islandAt(dates.at(-1));
   const previous = islandAt('2026-09-08', beforeSync);
-  assert.equal(previous.events.length, 8);
-  assert.deepEqual(Object.fromEntries(previous.areas.map(area => [area.id, area.posts.length])), { blog: 3, make: 0, note: 3, youtube: 0, sns: 1, instagram: 1 });
+  assert.equal(previous.events.length, 6);
+  assert.deepEqual(Object.fromEntries(previous.areas.map(area => [area.id, area.posts.length])), { blog: 3, make: 0, note: 3, youtube: 0, sns: 0, instagram: 0 });
   const originalSnapshot = islandAt('2026-11-11', beforeSync);
   assert.ok(latest.date >= '2026-11-11');
-  assert.ok(historyRangeLabel.startsWith('2026.8.30–'));
-  assert.equal(originalSnapshot.events.filter(event => event.date >= '2026-11-01').length, 18);
+  assert.ok(historyRangeLabel.startsWith('2026.9.3–'));
+  assert.equal(originalSnapshot.events.filter(event => event.date >= '2026-11-01').length, 13);
   for (const month of ['2026-09', '2026-10']) {
     const backfill = latest.events.filter(event => event.date.startsWith(month) && event.date >= '2026-09-09');
-    assert.deepEqual(new Set(backfill.map(event => event.channel)), new Set(['blog', 'note', 'youtube', 'sns', 'instagram']));
+    assert.deepEqual(new Set(backfill.map(event => event.channel)), new Set(['blog', 'note', 'youtube']));
   }
-  assert.ok(islandAt('2026-09-15').today.length > 0);
+  assert.ok(islandAt('2026-09-14').today.length > 0);
   assert.ok(islandAt('2026-10-15').today.length > 0);
-  assert.deepEqual(originalSnapshot.today.map(event => event.id), ['x-2120370476749119725', 'threads-DflJN_tEaDp']);
+  assert.deepEqual(originalSnapshot.today, []);
   assert.ok(activities.every(event => event.kind === 'published'));
   assert.equal(islandAt('2026-08-29').events.length, 0);
 });
@@ -59,7 +59,7 @@ test('rewinding and returning reproduces the same state, independent of input or
 test('source URLs only permit valid HTTPS, sample records do not invent destinations', () => {
   for (const value of [null, '', 'javascript:alert(1)', 'data:text/html,x', 'http://example.com', '//example.com', '/missing']) assert.equal(safeSourceUrl(value), null);
   assert.equal(safeSourceUrl('https://example.com/post'), 'https://example.com/post');
-  assert.equal(activities.filter(event => !safeSourceUrl(event.url)).length, 2);
+  assert.equal(activities.filter(event => !safeSourceUrl(event.url)).length, 0);
   assert.ok(activities.filter(event => event.date >= '2026-09-09').every(event => safeSourceUrl(event.url)));
 });
 test('publication data is internally coherent and every event is reachable from the timeline', () => {
@@ -119,10 +119,9 @@ test('current entries link to the published workshop and keep media routes conne
   }
 });
 
-test('splitting the social routes does not rewrite the old Instagram and Threads posts', () => {
-  const day = islandAt('2026-08-30');
-  assert.deepEqual(day.events.map(event => event.id).sort(), ['instagram-20260830-bags', 'threads-20260830-bags']);
-  assert.equal(day.areas.find(area => area.id === 'instagram').posts[0].id, 'instagram-20260830-bags');
-  assert.equal(day.areas.find(area => area.id === 'sns').posts[0].id, 'threads-20260830-bags');
-  assert.ok(day.events.every(event => event.url === null));
+test('social posts are excluded from history while social destination links remain available', () => {
+  assert.ok(activities.every(event => !['sns', 'instagram'].includes(event.channel)));
+  assert.deepEqual(islandAt('2026-08-30').events, []);
+  assert.deepEqual(mediaRoutes.map(route => route.from), ['sns', 'instagram']);
+  assert.ok(channels.filter(area => ['sns', 'instagram'].includes(area.id)).every(area => area.links.length > 0));
 });

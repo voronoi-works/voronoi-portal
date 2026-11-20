@@ -402,7 +402,7 @@ export default function Island({ publicBuild = false }: { publicBuild?: boolean 
               </span>
             </div>
             <div className="history-filters" aria-label="履歴のエリア絞り込み">
-              {[{ id: 'all', name: 'すべて' }, ...channels].map((channel) => (
+              {[{ id: 'all', name: 'すべて' }, ...destinations].map((channel) => (
                 <button
                   key={channel.id}
                   aria-pressed={filter === channel.id}

@@ -6,8 +6,8 @@ test('timeline extends through the latest recorded publication without hiding ol
   assert.equal(lastDate, activities.map(event => event.date).sort().at(-1));
   assert.equal(dates.at(-1), lastDate);
   assert.equal(islandAt(lastDate).events.length, activities.length);
-  assert.equal(activities.slice(0, 328).filter(event => event.date >= '2026-09-09' && event.date <= '2026-10-31').length, 302);
-  assert.ok(activities.some(event => event.id === 'threads-20260830-bags' && event.url === null));
+  assert.equal(activities.slice(0, 154).filter(event => event.date >= '2026-09-09' && event.date <= '2026-10-31').length, 135);
+  assert.ok(activities.every(event => ['blog', 'make', 'note', 'youtube'].includes(event.channel)));
 });
 
 test('automatically observed build articles identify their dates as observations', () => {
