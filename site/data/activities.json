@@ -1603,6 +1603,72 @@
       "source": "note",
       "publishedAt": "Sat, 21 Nov 2026 12:10:39 +0900",
       "dateBasis": "published"
+    },
+    {
+      "id": "note-2558d24a198048bd",
+      "date": "2026-11-21",
+      "channel": "note",
+      "kind": "published",
+      "title": "ニッチな経験を500円で売るならこう設計する、ていう手の内をタダで出しとくわ。",
+      "url": "https://note.com/voronoi_works/n/nd719dceb756f",
+      "source": "note",
+      "publishedAt": "Sat, 21 Nov 2026 21:03:47 +0900",
+      "dateBasis": "published"
+    },
+    {
+      "id": "passing-hours-237e57161099d4f6",
+      "date": "2026-11-22",
+      "channel": "youtube",
+      "kind": "published",
+      "title": "【作業用BGM・波の音】海辺のデイキャンプ 24時間ライブ｜朝・昼・夜で移り変わる海と音楽",
+      "url": "https://www.youtube.com/watch?v=e3z3Vdlg10Y",
+      "source": "passing-hours",
+      "publishedAt": "2026-11-21T17:25:56+00:00",
+      "dateBasis": "published"
+    },
+    {
+      "id": "passing-hours-598638eb23543a92",
+      "date": "2026-11-22",
+      "channel": "youtube",
+      "kind": "published",
+      "title": "【作業用BGM】何かが現れる天文台で、星を読む｜晩秋のピアノとLo-fi",
+      "url": "https://www.youtube.com/watch?v=F70iN8na9G8",
+      "source": "passing-hours",
+      "publishedAt": "2026-11-22T01:59:05+00:00",
+      "dateBasis": "published"
+    },
+    {
+      "id": "passing-hours-875620f289cd4e4f",
+      "date": "2026-11-22",
+      "channel": "youtube",
+      "kind": "published",
+      "title": "【作業用BGM】天文台でひと息、窓の外は星空へ｜ピアノとLo-fi",
+      "url": "https://www.youtube.com/watch?v=f6UHd9gv72E",
+      "source": "passing-hours",
+      "publishedAt": "2026-11-22T02:08:01+00:00",
+      "dateBasis": "published"
+    },
+    {
+      "id": "passing-hours-a18b309b0a8f4f3d",
+      "date": "2026-11-22",
+      "channel": "youtube",
+      "kind": "published",
+      "title": "【作業用BGM】何かが通る空と、星を読む天文台｜静かなピアノとLo-fi",
+      "url": "https://www.youtube.com/watch?v=IXQ35oe8bUU",
+      "source": "passing-hours",
+      "publishedAt": "2026-11-22T02:08:13+00:00",
+      "dateBasis": "published"
+    },
+    {
+      "id": "passing-hours-c70dfef8c837e326",
+      "date": "2026-11-22",
+      "channel": "youtube",
+      "kind": "published",
+      "title": "【作業用BGM】天文台でふと顔を上げる｜夕暮れから星空へ",
+      "url": "https://www.youtube.com/watch?v=yaDVbSt302A",
+      "source": "passing-hours",
+      "publishedAt": "2026-11-22T02:07:47+00:00",
+      "dateBasis": "published"
     }
   ],
   "observedBuildUrls": [
