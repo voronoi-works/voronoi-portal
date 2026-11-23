@@ -1669,6 +1669,17 @@
       "source": "passing-hours",
       "publishedAt": "2026-11-22T02:07:47+00:00",
       "dateBasis": "published"
+    },
+    {
+      "id": "note-5cee212ecf54f832",
+      "date": "2026-11-22",
+      "channel": "note",
+      "kind": "published",
+      "title": "「付加価値をつける」ってトイレでペーパー補充することかもしれん。",
+      "url": "https://note.com/voronoi_works/n/ncb827960c54b",
+      "source": "note",
+      "publishedAt": "Sun, 22 Nov 2026 12:49:17 +0900",
+      "dateBasis": "published"
     }
   ],
   "observedBuildUrls": [
