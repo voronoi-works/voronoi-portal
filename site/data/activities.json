@@ -1702,6 +1702,17 @@
       "source": "note",
       "publishedAt": "Tue, 24 Nov 2026 20:11:39 +0900",
       "dateBasis": "published"
+    },
+    {
+      "id": "ghost-91678f26f9a0c8df",
+      "date": "2026-11-26",
+      "channel": "blog",
+      "kind": "published",
+      "title": "要約の暴力と「共有された前提」の幻覚",
+      "url": "https://ghost.voronoi.works/2026-11-26-summary-stripped-context",
+      "source": "ghost",
+      "publishedAt": "Thu, 26 Nov 2026 00:00:00 GMT",
+      "dateBasis": "published"
     }
   ],
   "observedBuildUrls": [
