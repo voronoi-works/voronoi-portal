@@ -1713,6 +1713,17 @@
       "source": "ghost",
       "publishedAt": "Thu, 26 Nov 2026 00:00:00 GMT",
       "dateBasis": "published"
+    },
+    {
+      "id": "note-b25ae51d7d71a9f0",
+      "date": "2026-11-26",
+      "channel": "note",
+      "kind": "published",
+      "title": "自分の有料noteを売ることにこだわりすぎちゃう？",
+      "url": "https://note.com/voronoi_works/n/ndf0bbaee60ec",
+      "source": "note",
+      "publishedAt": "Thu, 26 Nov 2026 20:32:18 +0900",
+      "dateBasis": "published"
     }
   ],
   "observedBuildUrls": [
