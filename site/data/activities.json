@@ -1724,6 +1724,39 @@
       "source": "note",
       "publishedAt": "Thu, 26 Nov 2026 20:32:18 +0900",
       "dateBasis": "published"
+    },
+    {
+      "id": "note-5b084eec8bf761f5",
+      "date": "2026-11-27",
+      "channel": "note",
+      "kind": "published",
+      "title": "「最短の正解」を買った。ほな次の問題出たらどうするん？",
+      "url": "https://note.com/voronoi_works/n/n54836895bc1e",
+      "source": "note",
+      "publishedAt": "Fri, 27 Nov 2026 20:20:18 +0900",
+      "dateBasis": "published"
+    },
+    {
+      "id": "note-60584d2eb1dbf037",
+      "date": "2026-11-27",
+      "channel": "note",
+      "kind": "published",
+      "title": "2時間前に「正解を買うな」と書いた人がミニPCの正解を探してます。",
+      "url": "https://note.com/voronoi_works/n/nc9c53e83a38d",
+      "source": "note",
+      "publishedAt": "Fri, 27 Nov 2026 22:43:18 +0900",
+      "dateBasis": "published"
+    },
+    {
+      "id": "passing-hours-3def531c0393bb90",
+      "date": "2026-11-27",
+      "channel": "youtube",
+      "kind": "published",
+      "title": "【作業用BGM・波の音】海辺のデイキャンプ 24時間ライブ｜朝・昼・夜で移り変わる海と音楽",
+      "url": "https://www.youtube.com/watch?v=ct0H0wpZjSE",
+      "source": "passing-hours",
+      "publishedAt": "2026-11-27T13:09:35+00:00",
+      "dateBasis": "published"
     }
   ],
   "observedBuildUrls": [
